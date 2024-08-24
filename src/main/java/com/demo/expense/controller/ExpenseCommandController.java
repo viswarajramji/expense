@@ -2,6 +2,7 @@ package com.demo.expense.controller;
 
 import com.demo.expense.command.CreateExpenseCommand;
 import com.demo.expense.command.DeleteExpenseCommand;
+import com.demo.expense.command.UpdateExpenseCommand;
 import com.demo.expense.model.Expense;
 import com.demo.expense.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,14 @@ public class ExpenseCommandController {
         DeleteExpenseCommand command = new DeleteExpenseCommand(id);
         expenseService.executeCommand(command);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody UpdateExpenseCommand command) {
+        // Set the expenseId from the path variable
+        command.setExpenseId(id);
+        // Execute the update command
+        Expense updatedExpense = expenseService.executeCommand(command);
+        return ResponseEntity.ok(updatedExpense);
     }
 }
