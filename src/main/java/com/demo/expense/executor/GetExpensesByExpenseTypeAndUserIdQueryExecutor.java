@@ -1,7 +1,8 @@
 package com.demo.expense.executor;
-import com.demo.expense.CommandExecutor;
-import com.demo.expense.command.GetExpensesByExpenseTypeAndUserIdCommand;
+
+import com.demo.expense.api.QueryExecutor;
 import com.demo.expense.model.Expense;
+import com.demo.expense.query.GetExpensesByExpenseTypeAndUserIdQuery;
 import com.demo.expense.repo.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,17 +10,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GetExpensesByExpenseTypeAndUserIdCommandExecutor implements CommandExecutor<GetExpensesByExpenseTypeAndUserIdCommand, List<Expense>> {
+public class GetExpensesByExpenseTypeAndUserIdQueryExecutor implements QueryExecutor<GetExpensesByExpenseTypeAndUserIdQuery, List<Expense>> {
 
     private final ExpenseRepository expenseRepository;
 
     @Autowired
-    public GetExpensesByExpenseTypeAndUserIdCommandExecutor(ExpenseRepository expenseRepository) {
+    public GetExpensesByExpenseTypeAndUserIdQueryExecutor(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
 
     @Override
-    public List<Expense> execute(GetExpensesByExpenseTypeAndUserIdCommand command) {
+    public List<Expense> execute(GetExpensesByExpenseTypeAndUserIdQuery command) {
         return expenseRepository.findByUserIdAndExpenseType(command.getUserId(), command.getExpenseType());
     }
 }

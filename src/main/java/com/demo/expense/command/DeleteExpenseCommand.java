@@ -1,5 +1,5 @@
 package com.demo.expense.command;
-import com.demo.expense.Command;
+import com.demo.expense.api.Command;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
