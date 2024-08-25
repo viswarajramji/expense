@@ -30,14 +30,14 @@ public class ExpenseCommandController {
 
     // 2. Delete an Expense by ID
     @DeleteMapping("/{expenseId}")
-    public ResponseEntity<Void> deleteExpense(@Valid @PathVariable Long expenseId) {
+    public ResponseEntity<Void> deleteExpense(@PathVariable Long expenseId) {
         DeleteExpenseCommand command = new DeleteExpenseCommand(expenseId);
         expenseService.executeCommand(command);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{expenseId}")
-    public ResponseEntity<Expense> updateExpense(@Valid @PathVariable Long expenseId,@Valid @RequestBody UpdateExpenseCommand command) {
+    public ResponseEntity<Expense> updateExpense(@PathVariable Long expenseId,@Valid @RequestBody UpdateExpenseCommand command) {
         // Set the expenseId from the path variable
         command.setExpenseId(expenseId);
         // Execute the update command

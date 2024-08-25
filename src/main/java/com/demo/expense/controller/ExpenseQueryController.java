@@ -24,7 +24,7 @@ public class ExpenseQueryController {
 
     // 1. Read Expenses by userId
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Expense>> getExpensesByUserId(@Valid  @PathVariable Long userId) {
+    public ResponseEntity<List<Expense>> getExpensesByUserId(@PathVariable Long userId) {
         GetExpensesByUserIdQuery query = new GetExpensesByUserIdQuery(userId);
         List<Expense> expenses = expenseService.executeQuery(query);
         return ResponseEntity.ok(expenses);
@@ -33,7 +33,7 @@ public class ExpenseQueryController {
     // 2. Read Expenses by expenseType and userId
     @GetMapping("/user/{userId}/type/{expenseType}")
     public ResponseEntity<List<Expense>> getExpensesByExpenseTypeAndUserId(
-            @Valid @PathVariable Long userId,
+            @PathVariable Long userId,
             @Valid @PathVariable Category expenseType) {
         GetExpensesByExpenseTypeAndUserIdQuery query = new GetExpensesByExpenseTypeAndUserIdQuery(userId, expenseType);
         List<Expense> expenses = expenseService.executeQuery(query);
