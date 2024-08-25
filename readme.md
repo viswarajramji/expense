@@ -7,6 +7,10 @@ This project is an Expense Management System that follows the Command-Query-Resp
 
 This system leverages an event-driven architecture where commands initiate changes, and corresponding events are triggered to reflect those changes across the system. This approach decouples the components, making the system more scalable, responsive, and easy to maintain.
 
+## Sample output:
+
+![image](https://github.com/user-attachments/assets/f29a1a07-3521-4b96-820f-abd3468fe75b)
+
 ### Process Flow Diagram
 
 ```mermaid
