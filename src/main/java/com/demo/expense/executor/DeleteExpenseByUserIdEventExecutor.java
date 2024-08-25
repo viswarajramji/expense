@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeleteBudgetsByUserIdEventExecutor implements EventExecutor<DeleteUserEvent> {
+public class DeleteExpenseByUserIdEventExecutor implements EventExecutor<DeleteUserEvent> {
 
     private final ExpenseRepository expenseRepository;
 
     @Autowired
-    public DeleteBudgetsByUserIdEventExecutor(ExpenseRepository expenseRepository) {
+    public DeleteExpenseByUserIdEventExecutor(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
 
