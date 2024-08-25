@@ -7,35 +7,9 @@ This project is an Expense Management System that follows the Command-Query-Resp
 
 This system leverages an event-driven architecture where commands initiate changes, and corresponding events are triggered to reflect those changes across the system. This approach decouples the components, making the system more scalable, responsive, and easy to maintain.
 
-## Running the Project
+## Sample output:
 
-### Prerequisites
-
-- Java 11 or higher
-- Maven 3.x
-
-### Steps to Run
-
-1. **Clone the Repository**:
-   ```sh
-   git clone https://github.com/your-username/expense-management-system.git
-   cd expense-management-system
-   ```
-
-2. **Build the Project**:
-   Use Maven to build the project:
-   ```sh
-   mvn clean install
-   ```
-
-3. **Run the Application**:
-   Start the Spring Boot application:
-   ```sh
-   mvn spring-boot:run
-   ```
-
-4. **Access the API**:
-   The application runs on `http://localhost:8080`. You can interact with the API using tools like Postman or cURL.
+![image](https://github.com/user-attachments/assets/f29a1a07-3521-4b96-820f-abd3468fe75b)
 
 ### Process Flow Diagram
 
@@ -47,19 +21,19 @@ graph TD
         ECC -->|Update| UEC[Update Expense Command]
         ECC -->|Delete| DEC[Delete Expense Command]
 
-        CEC --> ES[Expense Service]
-        UEC --> ES
-        DEC --> ES
+        CEC --> ES1[Expense Service]
+        UEC --> ES1
+        DEC --> ES1
 
-        ES --> CEEX[Create Expense Executor]
-        ES --> UEEX[Update Expense Executor]
-        ES --> DEEX[Delete Expense Executor]
+        ES1 --> CEEX[Create Expense Executor]
+        ES1 --> UEEX[Update Expense Executor]
+        ES1 --> DEEX[Delete Expense Executor]
 
-        CEEX --> ER[Expense Repository]
-        UEEX --> ER
-        DEEX --> ER
+        CEEX --> ER1[Expense Repository - Command]
+        UEEX --> ER1
+        DEEX --> ER1
 
-        ER --> EDB[Expense Database]
+        ER1 --> EDB1[(Expense Database - Command)]
     end
 
     subgraph Event Flow
@@ -77,16 +51,16 @@ graph TD
         EQC -->|Get by User ID| GEBUI[Get Expenses By User ID Query]
         EQC -->|Get by Type and User ID| GETUI[Get Expenses By Type and User ID Query]
 
-        GEBUI --> ES
-        GETUI --> ES
+        GEBUI --> ES2[Expense Service]
+        GETUI --> ES2
 
-        ES --> GEBUIE[Get Expenses By User ID Executor]
-        ES --> GETUIE[Get Expenses By Type Executor]
+        ES2 --> GEBUIE[Get Expenses By User ID Executor]
+        ES2 --> GETUIE[Get Expenses By Type Executor]
 
-        GEBUIE --> ER
-        GETUIE --> ER
+        GEBUIE --> ER2[Expense Repository - Query]
+        GETUIE --> ER2
 
-        ER --> EDB
+        ER2 --> EDB2[(Expense Database - Query)]
     end
 ```
 
@@ -194,3 +168,34 @@ classDiagram
 ### Controllers
 Controllers handle incoming HTTP requests and map them to the appropriate commands, queries, or events. The `ExpenseCommandController` manages commands related to expenses, while the `ExpenseQueryController` manages queries. These controllers serve as the entry points to the system's functionality, exposing the API to the outside world.
 
+## Getting Started
+
+To run the service locally:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/viswarajramji/expense.git
+   cd expense
+   ```
+
+2. **Build the application**:
+   ```bash
+   ./mvnw clean install
+   ```
+
+3. **Start the application**:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+4. **Access the application** at `http://localhost:8084`.
+
+5. **Access the database** at `http://localhost:8084/h2-console`.
+
+**Note**: Ensure Kafka is running and the topic `expenseservice` is created.
+
+## Swagger Endpoint
+
+Access the Swagger UI to interact with the API:
+
+- **URL**: `http://localhost:8084/swagger-ui.html`
