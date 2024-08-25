@@ -199,3 +199,9 @@ To run the service locally:
 Access the Swagger UI to interact with the API:
 
 - **URL**: `http://localhost:8084/swagger-ui.html`
+
+## Code Coverage
+
+![image](https://github.com/user-attachments/assets/c6042683-06b4-4866-b905-e47af04d8929)
+
+
