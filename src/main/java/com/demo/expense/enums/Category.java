@@ -1,6 +1,6 @@
 package com.demo.expense.enums;
 
-public enum ExpenseType {
+public enum Category {
     GROCERIES,
     ENTERTAINMENT,
     UTILITIES,

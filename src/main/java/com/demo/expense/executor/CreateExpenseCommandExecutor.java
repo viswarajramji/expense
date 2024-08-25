@@ -29,7 +29,7 @@ public class CreateExpenseCommandExecutor implements CommandExecutor<CreateExpen
     @Override
     public Expense execute(CreateExpenseCommand command) {
         if (!userValidationService.isValidUser(command.getUserId())) {
-            throw new IllegalArgumentException("Invalid userId: " + command.getUserId());
+            throw new RuntimeException("Invalid userId: " + command.getUserId());
         }
         Expense expense = new Expense();
         expense.setUserId(command.getUserId());

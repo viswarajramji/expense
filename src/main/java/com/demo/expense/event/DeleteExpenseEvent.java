@@ -1,7 +1,6 @@
 package com.demo.expense.event;
-import com.demo.expense.api.Command;
 import com.demo.expense.api.Event;
-import com.demo.expense.enums.ExpenseType;
+import com.demo.expense.enums.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ public class DeleteExpenseEvent implements Event {
     private Long userId;             // The ID of the user who owns the expense
     private String expenseName;      // The name of the expense
     private String expenseDescription; // A description of the expense
-    private ExpenseType expenseType; // The type of the expense (e.g., FOOD, TRANSPORTATION, etc.)
+    private Category expenseType; // The type of the expense (e.g., FOOD, TRANSPORTATION, etc.)
     private Double Amount;
 
 }

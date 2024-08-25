@@ -28,7 +28,7 @@ public class DeleteExpenseCommandExecutor implements CommandExecutor<DeleteExpen
     public Void execute(DeleteExpenseCommand command) {
         Optional<Expense> expenseOpt = expenseRepository.findById(command.getExpenseId());
         if (expenseOpt.isEmpty()) {
-            throw new IllegalArgumentException("Expense not found with id: " + command.getExpenseId());
+            throw new RuntimeException("Expense not found with id: " + command.getExpenseId());
         }
         Expense expense = expenseOpt.get();
         expenseRepository.deleteById(command.getExpenseId());

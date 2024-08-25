@@ -26,7 +26,7 @@ public class UserValidationService {
             return false;
         } catch (Exception e) {
             // Handle other exceptions such as connectivity issues
-            throw new RuntimeException("Error validating userId: " + userId, e);
+            throw new RuntimeException("User not found: " + userId, e);
         }
     }
 }

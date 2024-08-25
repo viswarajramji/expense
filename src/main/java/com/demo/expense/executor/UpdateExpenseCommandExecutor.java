@@ -29,12 +29,12 @@ public class UpdateExpenseCommandExecutor implements CommandExecutor<UpdateExpen
     @Override
     public Expense execute(UpdateExpenseCommand command) {
         if (!userValidationService.isValidUser(command.getUserId())) {
-            throw new IllegalArgumentException("Invalid userId: " + command.getUserId());
+            throw new RuntimeException("Invalid userId: " + command.getUserId());
         }
 
         Optional<Expense> existingExpenseOpt = expenseRepository.findById(command.getExpenseId());
         if (existingExpenseOpt.isEmpty()) {
-            throw new IllegalArgumentException("Expense not found with id: " + command.getExpenseId());
+            throw new RuntimeException("Expense not found with id: " + command.getExpenseId());
         }
 
         Expense existingExpense = existingExpenseOpt.get();
